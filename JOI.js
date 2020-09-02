@@ -3,11 +3,11 @@ const Joi = require('joi');
 const UsersJoiSchema = Joi.object(
     {
         username: Joi.string().alphanum().min(7).max(25).required(),
-        password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
-        email: Joi.string().pattern(new RegExp('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')).required(),
-        token: Joi.string().number().required(),
+        password: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9]{3,30}$/)).required(),
+        email: Joi.string().pattern(new RegExp(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)).required(),
+        token: Joi.number().required(),
         current_location: Joi.required(),
-        mobile_number: Joi.string().number().pattern(new RegExp('(201)[0-9]{9}')).required(),
+        mobile_number: Joi.string().pattern(new RegExp(/(201)[0-9]{9}/)).required(),
         status: Joi.string()
     }
 );
@@ -15,11 +15,11 @@ const UsersJoiSchema = Joi.object(
 const DriversJoiSchema = Joi.object(
     {
         username: Joi.string().alphanum().min(7).max(25).required(),
-        password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
-        email: Joi.string().pattern(new RegExp('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$')).required(),
-        token: Joi.string().number().required(),
+        password: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9]{3,30}$/)).required(),
+        email: Joi.string().pattern(new RegExp(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)).required(),
+        token: Joi.number().required(),
         current_location: Joi.required(),
-        mobile_number: Joi.string().number().pattern(new RegExp('(201)[0-9]{9}')).required(),
+        mobile_number: Joi.string().pattern(new RegExp(/(201)[0-9]{9}/)).required(),
         status: Joi.string(),
         current_car: Joi.ref(CarJoiSchema)
     }
@@ -28,7 +28,7 @@ const DriversJoiSchema = Joi.object(
 const CarsJoiSchema = Joi.object(
 {
     car_model:Joi.string().required(),
-    car_year:Joi.string().number().required(),
+    car_year:Joi.number().required(),
     license:Joi.string(),
     plate_numbers:Joi.string().required(),
     driver:Joi.ref(DriversJoiSchema)
@@ -39,9 +39,9 @@ const TripsJoiSchema = Joi.object(
     {
         start_point:Joi.required(),
         destination:Joi.required(),
-        arrival_time:Joi.string().pattern(new RegExp('^([0-9]{2})\:([0-9]{2})$')).required(),
-        start_time:Joi.string().pattern(new RegExp('^([0-9]{2})\:([0-9]{2})$')).required(),
-        cost:Joi.string().number().required(),
+        arrival_time:Joi.string().pattern(new RegExp(/^([0-9]{2})\:([0-9]{2})$/)).required(),
+        start_time:Joi.string().pattern(new RegExp(/^([0-9]{2})\:([0-9]{2})$/)).required(),
+        cost:Joi.number().required(),
         rider:Joi.ref(UsersJoiSchema),
         driver:Joi.ref(DriversJoiSchema)
     }
