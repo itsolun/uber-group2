@@ -47,7 +47,6 @@ const drivers_schema = mongoose.Schema({
     car_year: { type: Number },
     license: { type: String },
     plat_numbers: { type: String },
-    driver_id: mongoose.Types.ObjectId
   },
   trips: [{
     type: mongoose.Schema.Types.ObjectId,
