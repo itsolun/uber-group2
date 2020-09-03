@@ -19,7 +19,7 @@ const users_schema = mongoose.Schema({
   status: { type: Boolean },
   trips: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "trips"
+    ref: "Trips"
   }]
 
 });
@@ -50,7 +50,7 @@ const drivers_schema = mongoose.Schema({
   },
   trips: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "trips"
+    ref: "Trips"
   }]
 });
 
@@ -72,15 +72,15 @@ const trips_schema = mongoose.Schema({
   arrival_time: Date,
   start_time: Date,
   cost: Number,
-  driver_id: mongoose.Types.ObjectId,
-  rider_id: _id = mongoose.Types.ObjectId
+  driver_id: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+  rider_id: _id = { type: mongoose.Schema.Types.ObjectId, ref: "Drivers" }
 
 });
 
-const users = mongoose.model("users", users_schema);
-const drivers = mongoose.model("drivers", drivers_schema);
-const trips = mongoose.model("trips", trips_schema);
+const Users = mongoose.model("Users", users_schema);
+const Drivers = mongoose.model("Drivers", drivers_schema);
+const Trips = mongoose.model("Trips", trips_schema);
 
-module.exports = users;
-module.exports = drivers;
-module.exports = trips;
+module.Users = Users;
+module.Drivers = Drivers;
+module.Trips = Trips;
