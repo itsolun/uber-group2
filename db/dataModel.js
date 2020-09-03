@@ -1,5 +1,9 @@
 mongoose = require('mongoose')
 
+/**
+ * Represents a User Schema.
+ * @constructor
+ */
 const users_schema = mongoose.Schema({
     _id = mongoose.Types.ObjectId,
     username: { type: String, unique: true, required: true, trim: true },
@@ -19,6 +23,10 @@ const users_schema = mongoose.Schema({
 
 });
 
+/**
+ * Represents a Cop's Schema.
+ * @constructor
+ */
 const drivers_schema = mongoose.Schema({
     _id = mongoose.Types.ObjectId,	
     username: { type: String, unique: true, required: true, trim: true },
@@ -45,6 +53,10 @@ const drivers_schema = mongoose.Schema({
       }]
 });
 
+/**
+ * Represents trips Schema.
+ * @constructor
+ */
 const trips_schema = mongoose.Schema({
     _id = mongoose.Types.ObjectId,
     start_point:  {
