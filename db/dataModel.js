@@ -1,10 +1,6 @@
 // Mongoose
 const mongoose = require("mongoose");
 
-/**
- * Represents a User Schema.
- * @constructor
- */
 const users_schema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   username: { type: String, unique: true, required: true, trim: true },
@@ -24,10 +20,7 @@ const users_schema = mongoose.Schema({
 
 });
 
-/**
- * Represents a Cop's Schema.
- * @constructor
- */
+
 const drivers_schema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   username: { type: String, unique: true, required: true, trim: true },
@@ -54,10 +47,7 @@ const drivers_schema = mongoose.Schema({
   }]
 });
 
-/**
- * Represents trips Schema.
- * @constructor
- */
+
 const trips_schema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   start_point: {
@@ -72,8 +62,8 @@ const trips_schema = mongoose.Schema({
   arrival_time: Date,
   start_time: Date,
   cost: Number,
-  driver_id: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
-  rider_id: { type: mongoose.Schema.Types.ObjectId, ref: "Drivers" }
+  rider: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+  driver: { type: mongoose.Schema.Types.ObjectId, ref: "Drivers" }
 
 });
 
@@ -84,3 +74,5 @@ const Trips = mongoose.model("Trips", trips_schema);
 module.Users = Users;
 module.Drivers = Drivers;
 module.Trips = Trips;
+
+//==============================
