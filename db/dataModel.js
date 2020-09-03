@@ -1,25 +1,26 @@
 mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true });
 
 /**
  * Represents a User Schema.
  * @constructor
  */
 const users_schema = mongoose.Schema({
-    _id = mongoose.Types.ObjectId,
-    username: { type: String, unique: true, required: true, trim: true },
-    password: String,
-    email: {type: String, unique: true},
-    // token: 
-    current_location: {
-		type: {type: String, required: true, default: "Point"},
-		coordinates: [ Number ]
-	},     
-    mobile_number:{type: Number},
-    status: {type: Boolean},
-    trips:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "trips"
-      }]
+  _id = mongoose.Types.ObjectId,
+  username: { type: String, unique: true, required: true, trim: true },
+  password: String,
+  email: { type: String, unique: true },
+  // token: 
+  current_location: {
+    type: { type: String, required: true, default: "Point" },
+    coordinates: [Number]
+  },
+  mobile_number: { type: Number },
+  status: { type: Boolean },
+  trips: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "trips"
+  }]
 
 });
 
@@ -28,29 +29,30 @@ const users_schema = mongoose.Schema({
  * @constructor
  */
 const drivers_schema = mongoose.Schema({
-    _id = mongoose.Types.ObjectId,	
-    username: { type: String, unique: true, required: true, trim: true },
-    password: String,
-    email   : {type: String, unique: true},
-    // token	
-    current_location: {
-		type: {type: String, required: true, default: "Point"},
-		coordinates: [ Number ],
-    },   
-       
-    available: {type: Boolean},
-    mobile_number: Number,
-    status: {type: Boolean},	
-    current_car: {
-        car_model: {type: String},
-        car_year: {type: Number},
-        license: {type: String},
-        plat_numbers: {type: String}
-    },	
-    trips:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "trips"
-      }]
+  _id = mongoose.Types.ObjectId,
+  username: { type: String, unique: true, required: true, trim: true },
+  password: String,
+  email: { type: String, unique: true },
+  // token	
+  current_location: {
+    type: { type: String, required: true, default: "Point" },
+    coordinates: [Number],
+  },
+
+  available: { type: Boolean },
+  mobile_number: Number,
+  status: { type: Boolean },
+  current_car: {
+    car_model: { type: String },
+    car_year: { type: Number },
+    license: { type: String },
+    plat_numbers: { type: String },
+    driver_id: mongoose.Types.ObjectId
+  },
+  trips: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "trips"
+  }]
 });
 
 /**
@@ -58,21 +60,21 @@ const drivers_schema = mongoose.Schema({
  * @constructor
  */
 const trips_schema = mongoose.Schema({
-    _id = mongoose.Types.ObjectId,
-    start_point:  {
-		type: { type: String, required: true, default: "Point" },
-		coordinates: [ Number ],
-	},       
-    destination: {
-		type: { type: String, required: true, default: "Point" },
-		coordinates: [ Number ],
-    },
-    
-    arrival_time: Date,
-    start_time: Date,
-    cost: Number,
-    driver_id: mongoose.Types.ObjectId,
-    rider_id: _id = mongoose.Types.ObjectId
+  _id = mongoose.Types.ObjectId,
+  start_point: {
+    type: { type: String, required: true, default: "Point" },
+    coordinates: [Number],
+  },
+  destination: {
+    type: { type: String, required: true, default: "Point" },
+    coordinates: [Number],
+  },
+
+  arrival_time: Date,
+  start_time: Date,
+  cost: Number,
+  driver_id: mongoose.Types.ObjectId,
+  rider_id: _id = mongoose.Types.ObjectId
 
 });
 

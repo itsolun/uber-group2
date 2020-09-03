@@ -17,7 +17,7 @@ const UsersJoiSchema = Joi.object(
             .required(),
 
         // token: Joi.string().number().required(),
-        // current_location: Joi.required(),
+        current_location: Joi.required(),
 
         mobile_number: Joi.number()
             .pattern(new RegExp('(201)[0-9]{9}'))
@@ -44,7 +44,7 @@ const DriversJoiSchema = Joi.object(
             .required(),
 
         // token: Joi.string().number().required(),
-        // current_location: Joi.required(),
+        current_location: Joi.required(),
 
         mobile_number: Joi.number()
             .pattern(new RegExp('(201)[0-9]{9}'))
@@ -52,7 +52,9 @@ const DriversJoiSchema = Joi.object(
 
         status: Joi.boolean(),
 
-        current_car: Joi.ref(CarJoiSchema)
+        available: Joi.boolean(),
+
+        // current_car: Joi.ref(CarJoiSchema)
     }
 );
 
@@ -69,7 +71,7 @@ const CarsJoiSchema = Joi.object(
         plate_numbers: Joi.string()
             .required(),
 
-        driver: Joi.ref(DriversJoiSchema)
+        // driver: Joi.ref(DriversJoiSchema)
     }
 );
 
@@ -87,10 +89,6 @@ const TripsJoiSchema = Joi.object(
 
         cost: Joi.number()
             .required(),
-
-        rider: Joi.ref(UsersJoiSchema),
-
-        driver: Joi.ref(DriversJoiSchema)
     }
 );
 
