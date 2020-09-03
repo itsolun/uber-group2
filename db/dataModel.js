@@ -73,7 +73,7 @@ const trips_schema = mongoose.Schema({
   start_time: Date,
   cost: Number,
   driver_id: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
-  rider_id: _id = { type: mongoose.Schema.Types.ObjectId, ref: "Drivers" }
+  rider_id: { type: mongoose.Schema.Types.ObjectId, ref: "Drivers" }
 
 });
 
