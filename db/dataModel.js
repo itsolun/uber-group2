@@ -1,12 +1,12 @@
-mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true });
+// Mongoose
+const mongoose = require("mongoose");
 
 /**
  * Represents a User Schema.
  * @constructor
  */
 const users_schema = mongoose.Schema({
-  _id = mongoose.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   username: { type: String, unique: true, required: true, trim: true },
   password: String,
   email: { type: String, unique: true },
@@ -29,7 +29,7 @@ const users_schema = mongoose.Schema({
  * @constructor
  */
 const drivers_schema = mongoose.Schema({
-  _id = mongoose.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   username: { type: String, unique: true, required: true, trim: true },
   password: String,
   email: { type: String, unique: true },
@@ -60,7 +60,7 @@ const drivers_schema = mongoose.Schema({
  * @constructor
  */
 const trips_schema = mongoose.Schema({
-  _id = mongoose.Types.ObjectId,
+  _id: mongoose.Schema.Types.ObjectId,
   start_point: {
     type: { type: String, required: true, default: "Point" },
     coordinates: [Number],
